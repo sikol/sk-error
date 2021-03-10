@@ -41,3 +41,5 @@ add_library(sk-error INTERFACE)
 target_sources(sk-error PRIVATE include/sk/error.hxx)
 target_include_directories(sk-error INTERFACE include)
 target_compile_features(sk-error INTERFACE cxx_std_20)
+
+install(DIRECTORY "include" TYPE INCLUDE)
