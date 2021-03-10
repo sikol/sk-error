@@ -47,12 +47,19 @@ TEST_CASE("sk::error returns an exception") {
     auto err = return_runtime_error("this is a test error");
     REQUIRE(!err);
     REQUIRE(std::strcmp(err.what(), "this is a test error") == 0);
+
+    REQUIRE(err.is<std::exception>());
     REQUIRE(err.is<std::runtime_error>());
     REQUIRE(std::strcmp(err.get<std::runtime_error>()->what(),
                         "this is a test error") == 0);
+
+    REQUIRE(!err.is<std::domain_error>());
+    REQUIRE(err.get<std::domain_error>() == nullptr);
 }
 
 TEST_CASE("sk::error returns success") {
     auto err = return_success();
     REQUIRE(err);
+    REQUIRE(!err.is<std::exception>());
+    REQUIRE(err.get<std::exception>() == nullptr);
 }

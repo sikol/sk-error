@@ -80,6 +80,8 @@ namespace sk {
         // get<T>(): if is<T>(), return a pointer to the error,
         // otherwise return nullptr.
         template <error_type T> auto get() const -> T const * {
+            if (!exception_ptr)
+                return nullptr;
             return dynamic_cast<T const *>(exception_ptr.get());
         }
 
