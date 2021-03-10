@@ -14,7 +14,7 @@ throw exceptions during normal operation.
 The `sk:error` object is copyable and movable, and can be constructed from
 any object that derives from `std::exception`.  
 
-* `auto what() const -> char const *`: Return the stored exception's `what()`
+* `auto what() const -> char const *`: Return the stored exception's `what()`.
 * `operator bool() const`: Return `true` if the error object is empty (i.e.,
   indicates success and does not contain an exception object), or `false` if
   an error condition is present.
@@ -72,3 +72,4 @@ expected<int, sk::error> unhelpful_abs(int i) {
 
 	return make_unexpected(std::domain_error("integer must be negative"));
 }
+```

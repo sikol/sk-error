@@ -66,7 +66,11 @@ namespace sk {
         error &operator=(error &&) = default;
 
         // Return the error message.
-        auto what() const -> char const * { return exception_ptr->what(); }
+        auto what() const -> char const * { 
+            if (!exception_ptr)
+                return "success";
+            return exception_ptr->what(); 
+        }
 
         // Return true if the error is empty (success), false if an error
         // condition is present.

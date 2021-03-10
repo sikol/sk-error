@@ -60,6 +60,7 @@ TEST_CASE("sk::error returns an exception") {
 TEST_CASE("sk::error returns success") {
     auto err = return_success();
     REQUIRE(err);
+    REQUIRE(std::strcmp(err.what(), "success") == 0);
     REQUIRE(!err.is<std::exception>());
     REQUIRE(err.get<std::exception>() == nullptr);
 }
